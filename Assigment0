@@ -1,0 +1,135 @@
+package Assigment_1;
+
+import java.util.Scanner;
+
+public class asg00 {
+	static Scanner scan = new Scanner(System.in);
+	static void cls() {
+		for (int i = 0; i < 200; i++) {
+			System.out.println("");
+		}
+	}
+	static void display() {
+		System.out.println("  ____      _           _ ____ _____     _     _    ");
+		System.out.println(" | __ )    | |         | |  _ \\_   _|_ _| |__ | | ___ ");
+		System.out.println(" |  _ \\ _  | |_____ _  | | |_) || |/ _` | '_ \\| |/ _ \\");
+		System.out.println(" | |_) | |_| |_____| |_| |  __/ | | (_| | |_) | |  __/");
+		System.out.println(" |____/ \\___/       \\___/|_|    |_|\\__,_|_.__/|_|\\___|");
+		System.out.println("");
+		System.out.println("1. Start Simulator");
+		System.out.println("2. Close App");
+		System.out.print("Choose >>");
+	}
+	static void display2() {
+		cls();
+		System.out.println("+=============================================================================================================+");
+		System.out.println("+ +(String Type) | (Character Type) | *(Integer Type) | /(Floating Type) | Input 1 == Iinput 2 (Boolean Type) +");
+		System.out.println("+=============================================================================================================+");
+		System.out.println("+ 68+69          |     E  D         |        4761     |      1.015       |               False                +");
+		System.out.println("+=============================================================================================================+");
+		System.out.println("Press Enter to Continue.....");scan.nextLine();
+		cls();
+		System.out.println("+=======================================+");
+		System.out.println("+Data Type : Integer                    +");
+		System.out.println("+=======================================+");
+		System.out.println("+   +   |   -   |   *   |   /   |   %   |");
+		System.out.println("+=======================================+");
+		System.out.println("+  138  |   0   |  4761 |   1   |   0   |");
+		System.out.println("+=======================================+");
+		System.out.println("Press Enter to Continue.....");scan.nextLine();
+		cls();
+		boolean a = false,b = false;int flag =-1;
+		do {
+			flag = 0;
+			try {
+				System.out.print("Give Me value for P1 :");
+				a= scan.nextBoolean();scan.nextLine();
+			} catch (Exception e) {
+				flag =1;
+				scan.nextLine();
+			}
+		}while(flag==1);
+		cls();
+		do {
+			flag = 0;
+			try {
+				System.out.print("Give Me value for P2 :");
+				b= scan.nextBoolean();scan.nextLine();
+			} catch (Exception e) {
+				flag =1;
+				scan.nextLine();
+			}
+		}while(flag==1);
+		if(a == false && b == false || a==true && b==true) {
+			System.out.println("+====================================+");
+			System.out.println("+Logical Table                       +");
+			System.out.println("+====================================+");
+			System.out.println("+ P1=T , P2=F                        +");
+			System.out.println("+====================================+");
+			System.out.println("+  !P1  |  !P2  |  &&     |    ||    +");
+			System.out.println("+====================================+");
+			System.out.println("+ False |  True |  True   |   True   +");
+			System.out.println("+====================================+");
+		}else {
+			System.out.println("+====================================+");
+			System.out.println("+Logical Table                       +");
+			System.out.println("+====================================+");
+			System.out.println("+ P1=T , P2=F                        +");
+			System.out.println("+====================================+");
+			System.out.println("+  !P1  |  !P2  |  &&     |    ||    +");
+			System.out.println("+====================================+");
+			System.out.println("+ False |  True |  False  |   True   +");
+			System.out.println("+====================================+");
+		}
+		scan.nextLine();
+	}
+	static void start() {
+		int x=-1;int y=-1;
+		do {
+			try {
+				System.out.print("Input the first number [1-100] :");
+				x = scan.nextInt();scan.nextLine();
+			} catch (Exception e) {
+				System.out.println("Wrong Input");
+				scan.nextLine();
+			}
+		}while(x<1 || x>100);
+		do {
+			try {
+				System.out.print("Input the second number [1-100] :");
+				y = scan.nextInt();scan.nextLine();;
+			} catch (Exception e) {
+				System.out.println("Wrong Input");
+				scan.nextLine();
+			}
+		}while(y<1 || y>100);
+		display2();
+	}
+	static void exit() {
+		cls();
+		System.out.println("Press Enter to continue........");
+		scan.nextLine();
+		cls();
+		System.out.println("Thank You For Playing !!!");
+	}
+	static void menu() {
+		int x = -1;
+		do {
+			cls();
+			display();
+			x = scan.nextInt();scan.nextLine();
+			switch (x) {
+			case 1:
+				start();
+				break;
+			case 2:
+				exit();
+				break;
+			}
+		}while(x!=2);
+	}
+	public static void main(String[] args) {
+		menu();
+	}
+
+}

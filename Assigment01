@@ -1,0 +1,167 @@
+package Assigment_1;
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class asg1 {
+	static Scanner scan = new Scanner(System.in);
+	static ArrayList <data> list = new ArrayList<>();
+	static void display() {
+		System.out.println("  ____      _      ____  _   _    _    ____  _____ ");
+		System.out.println(" | __ )    | |    / ___|| | | |  / \\  |  _ \\| ____|");
+		System.out.println(" |  _ \\ _  | |____\\___ \\| |_| | / _ \\ | |_) |  _|  ");
+		System.out.println(" | |_) | |_| |_____|__) |  _  |/ ___ \\|  _ <| |__");
+		System.out.println(" |____/ \\___/     |____/|_| |_/_/   \\_\\_| \\_\\_____|");
+		System.out.println("");
+		System.out.println("+===============================+");
+		System.out.println("+ Options                       +");
+		System.out.println("+===============================+");
+		System.out.println("+1. Start Sharing               +");
+		System.out.println("+2. Update Participant          +");
+		System.out.println("+3. Delete Participant          +");
+		System.out.println("+4. Close App                   +");
+		System.out.println("+===============================+");
+		System.out.print("Choose >>");
+	}
+	static void cls() {
+		for (int i = 0; i < 200; i++) {
+			System.out.println("");
+		}
+	}
+	static boolean unique(String str) {
+		for (data x : list) {
+			if(x.name.equals(str)) {
+				System.out.println("Name already Exsist !");
+				return false;
+			}
+		}
+		return true;
+	}
+	static void Share() {
+		int x = -1;String name;
+		do {
+			try {
+				System.out.print("Input a number [0-100] : ");
+				x = scan.nextInt();scan.nextLine();
+			} catch (Exception e) {
+				System.out.println("It must numeric");scan.nextLine();
+			}
+		}while(x<0 || x > 100);
+		do {
+			System.out.print("Could you give me your username [5 - 20 character] : ");
+			name = scan.nextLine();
+			boolean a = unique(name);
+			if(a == true && name.length()>=5 && name.length()<=20) {
+				break;
+			}
+		}while(true);
+		list.add(new data(name,x));
+		System.out.printf("You are the %d that joins the game\n",list.size());
+		System.out.printf("Your Share number : %d \n",x);
+		scan.nextLine();
+	}
+	static int print() {
+		System.out.println("+=====================================+");
+		System.out.println("+ Share List                          +");
+		System.out.println("+=====================================+");
+		int x=0;
+		for (data data : list) {
+			x++;
+			System.out.format("|%d          |%s              | %d   |\n",x,data.name,data.num);
+		}
+		System.out.println("+=====================================+");
+		return x;
+	}
+	static void Update() {
+		if(list.isEmpty()) {
+			System.out.println("Data is empty");scan.nextLine();
+			return;
+		}
+		int x=1,y=-1;
+		do {
+			cls();
+			x = print();
+			System.out.format("Witch Participant do you like to Update [1-%d] [0 to exit]:",x);
+			y = scan.nextInt();scan.nextLine();
+			if(y == 0) {
+				return;
+			}
+		}while(y<1 || y>x);
+		int g=-1;String name;
+		cls();
+		print();
+		do {
+			System.out.print("Input a Number [0-100] : ");
+			try {
+				g = scan.nextInt();scan.nextLine();
+			} catch (Exception e) {
+				System.out.println("Input must Numeric ");scan.nextLine();
+			}
+		}while(g<0 || g>100);
+		System.out.println("Update succesfully!");
+		System.out.println("press any key to continue...");scan.nextLine();
+		list.set(y-1,new data(list.get(y-1).name,g));
+	}
+	static void Delete() {
+		if(list.isEmpty()) {
+			cls();
+			System.out.println("Data is empty");scan.nextLine();
+			return;
+		}
+		int x=-1;int g=-1;
+		do {
+			cls();
+			x = print();
+			System.out.format("Witch Participant do you like to Delete [1-%d] [0 to exit]:",x);
+			g = scan.nextInt();scan.nextLine();
+			if(g == 0) {
+				return;
+			}
+		}while(g<1 || g>x);
+		list.remove(g-1);
+		System.out.println("Participant succesfully removed from event");
+		System.out.println("press any key to continue...");scan.nextLine();
+	}
+	static void Close_app() {
+		if(list.isEmpty()) {
+			cls();
+			System.out.println("Here's The Complete Share List");
+			System.out.println("Data is empty");scan.nextLine();
+			return;
+		}
+		cls();
+		System.out.println("Here's The Complete Share List");
+		print();
+	}
+	static void menu() {
+		int x = -1;
+		do {
+			cls();
+			display();
+			try {
+				x = scan.nextInt();scan.nextLine();
+			} catch (Exception e) {
+				System.out.println("The input must be numeric ");scan.nextLine();
+				scan.nextLine();
+			}
+			switch (x) {
+			case 1:
+				Share();
+				break;
+			case 2:
+				Update();
+				break;
+			case 3:
+				Delete();
+				break;
+			case 4:
+				Close_app();
+				break;
+			}
+		}while(x!=4);
+	}
+	public static void main(String[] args) {
+	menu();
+	}
+}
